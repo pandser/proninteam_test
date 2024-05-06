@@ -1,6 +1,8 @@
 from datetime import datetime
 
 from django.db.models import Sum
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import status, views
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -11,8 +13,6 @@ from api.v1.serializers import CollectSerializer, PaymentSerialiser
 from api.v1.tasks import send_email
 from collect.models import Collect
 
-from django.core.mail import send_mail
-
 
 class CollectViewSet(ModelViewSet):
     queryset = Collect.objects.annotate(
@@ -20,6 +20,10 @@ class CollectViewSet(ModelViewSet):
     )
     serializer_class = CollectSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, IsAdminAuthorOrReadOnly)
+
+    @method_decorator(cache_page(60*5))
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
