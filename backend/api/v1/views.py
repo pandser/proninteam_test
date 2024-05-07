@@ -33,7 +33,7 @@ class CollectViewSet(ModelViewSet):
             theme='Сбор создан',
             body='Сбор успешно создан',
             sender='example@example.com',
-            recipient=[request.data.get('email')],
+            recipient=[request.user.email],
         )
         return super().create(request, *args, **kwargs)
 
@@ -47,11 +47,12 @@ class PaymentView(views.APIView):
             date_pay=datetime.now(),
             user=request.user,
         )
+        print(request.user.email)
         send_email.delay(
             theme='Платеж принят',
             body='Платеж прошел успешно',
             sender='example@example.com',
-            recipient=[request.data.get('email')],
+            recipient=[request.user.email],
         )
         return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         
