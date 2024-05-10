@@ -33,7 +33,7 @@ class Payment(models.Model):
     collect = models.ForeignKey(
         Collect,
         on_delete=models.CASCADE,
-        related_name='collect',
+        related_name='payment',
     )
     amount_pay = models.PositiveIntegerField()
     date_pay = models.DateTimeField()

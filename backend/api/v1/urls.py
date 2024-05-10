@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from api.v1.views import CollectViewSet, PaymentView
+from api.v1.views import CollectViewSet, PaymentViewSet
 
 
 router = routers.DefaultRouter()
@@ -12,7 +12,12 @@ router.register(
     basename='collect',
 )
 
+router.register(
+    'payments',
+    PaymentViewSet,
+    basename='payment'
+)
+
 urlpatterns = [
-    path('payments/', PaymentView.as_view()),
     path('', include(router.urls)),
 ]

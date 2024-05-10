@@ -21,7 +21,10 @@ django-templated-mail==1.1.1
 djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
 djoser==2.2.2
+drf-extra-fields==3.7.0
 Faker==12.0.1
+filetype==1.2.0
+gunicorn==22.0.0
 idna==3.7
 inflection==0.5.1
 itypes==1.2.0
@@ -30,6 +33,7 @@ kombu==5.3.7
 MarkupSafe==2.1.5
 mixer==7.2.2
 oauthlib==3.2.2
+packaging==24.0
 pillow==10.3.0
 prompt-toolkit==3.0.43
 psycopg2-binary==2.9.9

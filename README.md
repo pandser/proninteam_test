@@ -9,17 +9,7 @@
 
 #### Запуск проекта
 
-Создать .env файл.Пример:
-
-```
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-DB_HOST=db
-DB_PORT=5432
-SECRET_KEY='django-insecure-a8y71e7o7yeoe@hyp3db&%u-sz!+h72waq+2&=u@g-0=09q9lp'
-```
+Создать .env файл.
 
 В директории с проектом выполнить команду
 
@@ -44,8 +34,11 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
-
-Проект будет доступен по адресу http://localhost:8000/
+Собрать статику
+```
+python manage.py collectstatic
+```
+Проект будет доступен по адресу http://localhost/
 
 
 #### Для заполнения БД тестовыми данными восполльзутесь следующей командой:
